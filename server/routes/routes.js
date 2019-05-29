@@ -5,15 +5,18 @@ module.exports = (app) => {
    });
 
    app.get('/', (req, res, next) => {
-      res.render('singlepost');
+      res.render('singlepost-blog');
    });
 
    app.get('/', (req, res, next) => {
-      res.render('scripts');
+      res.render('about');
    });
 
    app.get('/', (req, res, next) => {
-      res.render('home');
+      res.render('categories-post');
    });
 
+   app.get('/', (req, res, next) => {
+      res.render('contact');
+   });
 };
