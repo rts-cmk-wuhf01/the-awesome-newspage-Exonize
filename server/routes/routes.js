@@ -4,19 +4,19 @@ module.exports = (app) => {
       res.render('home');
    });
 
-   app.get('/', (req, res, next) => {
+   app.get('/singlepost-blog', (req, res, next) => {
       res.render('singlepost-blog');
    });
 
-   app.get('/', (req, res, next) => {
+   app.get('/about', (req, res, next) => {
       res.render('about');
    });
 
-   app.get('/', (req, res, next) => {
+   app.get('/categories-post', (req, res, next) => {
       res.render('categories-post');
    });
 
-   app.get('/', (req, res, next) => {
+   app.get('/contact', (req, res, next) => {
       res.render('contact');
    });
 };
