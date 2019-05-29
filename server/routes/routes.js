@@ -1,5 +1,27 @@
 module.exports = (app) => {
 
+   // app.get('/', (req, res, next) => {
+   //    let products = [
+   //       {
+   //          "title": "",
+   //          "desc": 
+   //       },
+   //       {
+   //          "title": "",
+   //          "desc": 
+   //       }
+   //    ];
+
+   //    res.render('home', {
+   //       "latestProducts": products
+   //    });
+   // });
+
+   // <div class="nyhed">
+   //    <h2><%=nyhed.title %></h2>
+   //    <h2><%=nyhed.desc %></h2>
+   // </div>
+
    app.get('/', (req, res, next) => {
       res.render('home');
    });
