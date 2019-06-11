@@ -1,3 +1,5 @@
+const mysql = require('../config/mysql')
+
 module.exports = (app) => {
 
    app.get('/', (req, res, next) => {
@@ -43,7 +45,7 @@ module.exports = (app) => {
    });
 
    app.get('/categories-post/:category_id', async (req, res, next) => {
-      res.send(req.params.category_id);ss
+      res.send(req.params.category_id);
    });
    
 };
