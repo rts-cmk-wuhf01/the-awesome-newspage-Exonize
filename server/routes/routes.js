@@ -19,7 +19,7 @@ module.exports = (app) => {
    });
 
 
-   app.get('/category/:category_id', (req, res, next) => {
+   app.get('/category/:category_id', async (req, res, next) => {
 
    let db = await mysql.connect();
    let [categories] = await db.execute('SELECT * FROM categories WHERE category_id = ?', [1]);
