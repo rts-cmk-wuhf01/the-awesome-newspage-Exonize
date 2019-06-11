@@ -27,6 +27,7 @@ module.exports = (app) => {
       FROM articles 
       WHERE fk_category_id = ?`, [req.params.category_id]);
 
+      console.log(categories)
       res.render('categories-post' , {
          // 'latestPost' : posts,
          // 'latestComments' : comments,
@@ -42,7 +43,7 @@ module.exports = (app) => {
    });
 
    app.get('/categories-post/:category_id', async (req, res, next) => {
-      res.send(req.params.category_id);
+      res.send(req.params.category_id);ss
    });
    
 };
