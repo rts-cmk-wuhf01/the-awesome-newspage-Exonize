@@ -41,4 +41,12 @@ module.exports = (app) => {
    app.get('/contact', (req, res, next) => {
       res.render('contact');
    });
+
+   app.get('/categories-post/:category_id', async (req, res, next) => {
+      res.send(req.params.category_id); // for demonstrationens skyld! 
+   
+      // her kan alle kategoriens artikler hentes osv...
+   });
+
+   
 };

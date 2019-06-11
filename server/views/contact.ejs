@@ -128,6 +128,13 @@
                                                 <li><a href="about.html">About Us</a></li>
                                                 <li><a href="contact.html">Contact</a></li>
                                             </ul>
+
+                                            <% if(typeof categories != 'undefined'){ %>
+                                                <% categories.forEach(category =>{ %>
+                                                   <li><a href="/category/<%=category.category_id %>"><%=category.category_title %></a></li>
+                                                <% }); %>
+                                             <% } %>
+                                             
                                             <div class="single-mega cn-col-4">
                                                 <!-- Single Featured Post -->
                                                 <div class="single-blog-post small-featured-post d-flex">
@@ -291,6 +298,7 @@
     </div>
    <!-- ##### Footer Area Start ##### -->
    <%- include('partials/footer.ejs') %>
+   
 
     <!-- ##### All Javascript Files ##### -->
     <%- include('partials/scripts.ejs') %>
