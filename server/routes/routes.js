@@ -1,27 +1,5 @@
 module.exports = (app) => {
 
-   // app.get('/', (req, res, next) => {
-   //    let products = [
-   //       {
-   //          "title": "",
-   //          "desc": 
-   //       },
-   //       {
-   //          "title": "",
-   //          "desc": 
-   //       }
-   //    ];
-
-   //    res.render('home', {
-   //       "latestProducts": products
-   //    });
-   // });
-
-   // <div class="nyhed">
-   //    <h2><%=nyhed.title %></h2>
-   //    <h2><%=nyhed.desc %></h2>
-   // </div>
-
    app.get('/', (req, res, next) => {
       res.render('home');
    });
@@ -34,19 +12,37 @@ module.exports = (app) => {
       res.render('about');
    });
 
-   app.get('/categories-post', (req, res, next) => {
-      res.render('categories-post');
-   });
-
    app.get('/contact', (req, res, next) => {
       res.render('contact');
    });
 
-   app.get('/categories-post/:category_id', async (req, res, next) => {
-      res.send(req.params.category_id); // for demonstrationens skyld! 
-   
-      // her kan alle kategoriens artikler hentes osv...
+
+   app.get('/category/:category_id', (req, res, next) => {
+
+   let db = await mysql.connect();
+   let [categories] = await db.execute('SELECT * FROM categories WHERE category_id = ?', [1]);
+
+   let [articles] = await db.execute(`
+      SELECT category_title, article_title, article_image, article_postdate 
+      FROM articles 
+      WHERE fk_category_id = ?`, [req.params.category_id]);
+
+      res.render('categories-post' , {
+         // 'latestPost' : posts,
+         // 'latestComments' : comments,
+         // 'popularNews' : news,
+         articles,
+         "category": categories[0]
+      });
+      db.end();
    });
 
+   app.get('/categories-post', (req, res, next) => {
+      res.render('categories-post');
+   });
+
+   app.get('/categories-post/:category_id', async (req, res, next) => {
+      res.send(req.params.category_id);
+   });
    
 };
