@@ -3,7 +3,11 @@ const express = require('express');
 // opret en express applikation 
 const app = express();
 
-
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+   extended: true
+}));
 
 /* aktiver serverside console.log af side indlæsninger. 
  * Dette sættes op så vi kan følge med i hvilke HTML filer 
