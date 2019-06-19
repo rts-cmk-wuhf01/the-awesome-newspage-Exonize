@@ -1,12 +1,14 @@
-const mysql = require('mysql2');
+const mysql = require('../config/mysql.js');
 
-const db = mysql.createConnection({
-    'host': 'localhost',
-    'user': 'root',
-    'password': '',
-    'database': 'thenewspaper'
-});
-
+async function getCategories() {
+   let db = await mysql.connect();
+   let [categories] = await db.execute(`
+      SELECT category_id, category_title 
+      FROM categories
+      ORDER BY category_title ASC`);
+   db.end();
+   return categories;
+}
 
 module.exports = (app) => {
 
@@ -62,15 +64,20 @@ module.exports = (app) => {
             'return_message': return_message.join(', '),
             'values': req.body // læg mærke til vi "bare" sender req.body tilbage
          });
-      
+         
       } else {
          let db = await mysql.connect();
+         try {
          let result = await db.execute(`
-            INSERT INTO messages 
-               (message_name, message_email, message_subject, message_text, message_date) 
-            VALUES 
-               (?,?,?,?,?)`, [name, email, subject, message, contactDate]);
-         db.end();
+            INSERT INTO messages SET
+               message_name = ?
+               ,message_email = ?
+               ,message_subject = ?
+               ,message_text = ?
+               ,message_date = ?
+            `, [name, email, subject, message, contactDate]);
+
+         console.log(result[0])
 
          // affected rows er større end nul, hvis en (eller flere) række(r) blev indsat
          if (result[0].affectedRows > 0) {
@@ -83,9 +90,11 @@ module.exports = (app) => {
          res.render('contact', {
             'categories': categories,
             'return_message': return_message.join(', '),
-            'values': req.body
+            'values': {}
          });
-         res.send(req.body);
+       } catch (error) {
+          console.log(error.message)
+       } db.end();
       }
    });
 
@@ -104,6 +113,7 @@ module.exports = (app) => {
 
 
    app.get('/category/:category_id', async (req, res, next) => {
+
 
    let db = await mysql.connect();
    let [categories] = await db.execute('SELECT * FROM categories WHERE category_id = ?', [1]);

@@ -89,24 +89,26 @@
                         <form method="post">
                             <div class="row">
                                 <div class="col-12 col-lg-6">
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Name">
-                                    value="<%= typeof values != 'undefined' ? values.email: '' %>"
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Name"
+                                    value="<%= typeof values != 'undefined' ? values.name: '' %>">
+                                    
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="E-mail">
-                                    value="<%= typeof values != 'undefined' ? values.email: '' %>"
+                                    <input type="email" class="form-control" name="email" id="email" 
+                                    placeholder="E-mail" value="<%= typeof values != 'undefined' ? values.email: '' %>">
+                                    
                                 </div>
                                 <div class="col-12">
-                                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
-                                    value="<%= typeof values != 'undefined' ? values.email: '' %>"
+                                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
+                                    value="<%= typeof values != 'undefined' ? values.subject: '' %>">
                                 </div>
                                 <div class="col-12">
-                                    <textarea name="message" class="form-control id="message" cols="30" rows="10" placeholder="Message">
-                                        value="<%= typeof values != 'undefined' ? values.email: '' %>"
-                                    </textarea><% if( typeof return_message != 'undefined'){ %>
-                                        <h4><%= return_message %></h4>
-                                     <% } %>
+                                    <textarea name="message" class="form-control id="message" cols="30" rows="10" placeholder="Message"
+                                    value="<%= typeof values != 'undefined' ? values.message: '' %>"></textarea>
                                 </div>
+                                <% if( typeof return_message != 'undefined'){ %>
+                                    <h4><%= return_message %></h4>
+                                 <% } %>
                                 <div class="col-12 text-center">
                                     <button class="btn newspaper-btn mt-30 w-100" type="submit">Send Message</button>
                                 </div>
