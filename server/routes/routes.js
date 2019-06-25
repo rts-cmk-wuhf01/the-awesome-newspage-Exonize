@@ -27,6 +27,15 @@
       res.render('about');
    });
 
+   app.get('/fisk/:antal/:type', (req, res, next) => {
+    let fishData = {
+         antal: req.params.antal,
+         type:  req.params.type
+      }
+      res.render('fisk', {
+         fishData: fishData
+      });
+   });
    //=========================================================================
    // Contact Form
    app.get('/contact', (req, res, next) => {

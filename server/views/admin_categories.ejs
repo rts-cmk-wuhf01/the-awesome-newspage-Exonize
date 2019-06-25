@@ -1,0 +1,35 @@
+<form method="post">
+	<label>Titel</label>
+	<input
+	  type="text"
+	  name="category_title"
+	  value="<%= typeof category != 'undefined' ? category.category_title : '' %>">
+	<button>Gem</button>
+  </form>
+
+  <table>
+	<thead>
+	  <tr>
+		<th>Actions</th>
+		<th>Id</th>
+		<th>Titel</th>
+	  </tr>
+	</thead>
+  
+	<% if(typeof categories != 'undefined') { %>
+	<tbody>
+	  <% categories.forEach(category => { %>
+	  <tr>
+		<td>
+		  <a href="/admin/categories/edit/<%= category.category_id %>">Ret</a>
+		  <a
+			href="/admin/categories/delete/<%= category.category_id %>"
+			onclick="return confirm('Er du sikker på du vil slette?')">Slet</a>
+		</td>
+		<td><%= category.category_id %></td>
+		<td><%= category.category_title %></td>
+	  </tr>
+	  <% }) %>
+	</tbody>
+	<% } %>
+  </table>
